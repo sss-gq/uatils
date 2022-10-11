@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>drop</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box {
+        width: 100%;
+        height: 100vh;
+        background-color: antiquewhite;
+        overflow: auto;
+        box-sizing: border-box;
+        padding: 0 200px;
+      }
+      .center {
+        background-color: aquamarine;
+      }
+      .contetn {
+        /* white-space: nowrap; */
+        text-align: justify;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        overflow: hidden;
+      }
+      /* .contetn > i,
+      .contetn > div {
+        width: 200px;
+        margin: 25px;
+        padding: 25px;
+        border: 25px solid #ff0;
+        box-sizing: border-box;
+      } */
+
+      .widthbox {
+        width: 200px;
+        padding: 10px;
+        margin: 10px;
+        border: 10px solid #ff0;
+        background-color: aqua;
+        overflow: hidden;
+        box-sizing: content-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="width: 600px; height: 300px; border: 1px solid #f00"
+      id="target"
+    >
+      <label for="wheelDelta">滚动值:</label>
+      <input type="text" id="wheelDelta" style="position: fixed" />
+    </div>
+
+    <script type="text/javascript">
+      /***********************
+       * 函数：注册某元素的滚轮事件
+       * 作者：psvmc
+       * 参数：事件源DOM Id ， 回调方法（data）
+       * data: 1：向下  -1：向上
+       *************************/
+      function scrollEvent(domId, callbackFunc) {
+        var dom = document.getElementById(domId);
+        var scrollFunc = function (e) {
+          var direct = 0;
+          e = e || window.event;
+
+          if (e.wheelDelta) {
+            //IE/Opera/Chrome
+            if (e.wheelDelta > 0) {
+              direct = -1;
+            } else {
+              direct = 1;
+            }
+          } else if (e.detail) {
+            //Firefox
+            if (e.detail > 0) {
+              direct = 1;
+            } else {
+              direct = -1;
+            }
+          }
+          if (callbackFunc) {
+            callbackFunc(direct);
+          }
+        };
+        /*注册事件*/
+        if (dom.addEventListener) {
+          dom.addEventListener("DOMMouseScroll", scrollFunc, false);
+        }
+        dom.onmousewheel = scrollFunc; //IE/Opera/Chrome
+      }
+      scrollEvent("target", function (data) {
+        if (data == 1) {
+          document.getElementById("wheelDelta").value = "向下";
+        } else {
+          document.getElementById("wheelDelta").value = "向上";
+        }
+      });
+    </script>
+
+    <div id="box">
+      <div class="center">
+        <div class="contetn" data-aa="aa" bb="bb">
+          <div>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus quae
+            minima iste obcaecati harum placeat eveniet officia ab alias eum.
+            Hic voluptates quo, quae totam possimus laborum pariatur natus
+            voluptatum? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Excepturi dicta hic quasi expedita, quibusdam vitae fuga, mollitia
+            ipsam iure placeat quam, quo ducimus ex. Sapiente hic labore ducimus
+            minus placeat. Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Nobis officiis aperiam doloremque magnam architecto velit ea
+            debitis voluptate neque commodi ullam, esse praesentium
+            reprehenderit. Ratione voluptate illo voluptatibus fuga quod? Nobis,
+            dolores reprehenderit. Dignissimos distinctio mollitia, qui placeat
+            ex ipsum. Magnam asperiores ea quo iure mollitia modi totam nobis
+            pariatur blanditiis sunt. Deserunt possimus corrupti, accusamus sunt
+            quas iusto vero? Saepe, reprehenderit pariatur! Quod distinctio
+            ullam saepe. Animi, minus at cum explicabo, quibusdam maxime aliquam
+            laborum quidem reprehenderit atque ducimus voluptates repellendus!
+            Eum illo dicta asperiores fugit hic perferendis voluptatum? Dolores
+            sit voluptate iste! Incidunt pariatur nesciunt nostrum! Maiores et
+            veniam, aspernatur sit rem consectetur aut totam? Natus,
+            consequuntur repellendus. Sapiente, a excepturi reiciendis nesciunt
+            ad consequatur repellat iste animi? Dolorum, doloremque ipsam
+            inventore reiciendis illum optio, eligendi dolor aspernatur
+            architecto ea quibusdam harum esse eaque. Voluptatum, voluptatem?
+            Rerum ipsa accusantium voluptatum natus modi minus. Iure doloribus
+            error incidunt cupiditate! Autem quidem similique nostrum minima
+            voluptatum perspiciatis atque quaerat ratione maxime eaque numquam
+            veniam quibusdam obcaecati voluptate, iusto ipsa quis, laborum ab
+            ducimus asperiores tenetur dignissimos harum. Nesciunt, suscipit
+            deserunt. Rerum consequuntur corrupti accusamus, ipsum nemo impedit
+            id temporibus nam quis quaerat molestiae error tenetur, ex illo
+            incidunt, officia quibusdam. Saepe, fugit quam. Neque quaerat fugiat
+            soluta esse, adipisci natus. Voluptatem, at nisi! Incidunt inventore
+            mollitia eos hic aspernatur cumque ipsam in architecto, placeat cum
+            laboriosam illo vel distinctio dignissimos ad perferendis error
+            recusandae, doloribus sed! Commodi culpa odio distinctio!
+            Praesentium ut earum, eaque unde consequatur totam dicta id,
+            reprehenderit provident repellat suscipit quia quam harum reiciendis
+            placeat saepe laborum enim obcaecati, aperiam perspiciatis. Sunt
+            laudantium eligendi fugit iusto optio. Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Incidunt laboriosam aliquid hic
+            nostrum alias explicabo repellendus reprehenderit tempora error
+            iusto culpa, dicta possimus sed nobis inventore aspernatur
+            voluptatem perspiciatis placeat. Veritatis, optio. Ducimus possimus
+            quos ab ipsam accusantium quisquam nostrum aliquam numquam dolorem
+            provident obcaecati tempore aliquid rerum adipisci minus cumque,
+            suscipit necessitatibus repellat in neque enim eveniet, facilis
+            tempora. Distinctio itaque sunt eligendi? Labore aut voluptates ad
+            repellat nobis asperiores officiis laboriosam, sapiente ea esse vero
+            fuga reiciendis, illum quo at doloremque incidunt magnam tempore
+            voluptatibus, velit repudiandae? Delectus! Nisi modi omnis
+            asperiores tenetur consectetur velit voluptates, beatae nam minima,
+            dolorem quo at est quisquam sunt et. Rem neque itaque quo quia
+            nesciunt molestias minus dignissimos assumenda odio veritatis? Non,
+            suscipit eaque ratione quo sint dolore possimus quis ex nisi labore
+            magni corporis cum autem harum delectus asperiores vel natus qui
+            vitae neque perferendis nostrum? Atque unde id amet. Laudantium
+            facere vel accusantium minima vitae eius odit distinctio ratione
+            saepe enim optio, beatae illum officiis est expedita nihil. Quod
+            eius reiciendis magnam, perspiciatis ipsum itaque unde aliquam
+            aliquid ad.
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .contetn > div {
+        width: 200px;
+        margin: 25px;
+        padding: 25px;
+        border: 25px solid #ff0;
+        /* box-sizing: border-box; */
+      }
+    </style>
+    <script>
+      const contetn =
+        document.getElementsByClassName("contetn")[0].firstElementChild;
+      /*
+        clientWidth content + padding , 会根据box-sizing不同返回的也不同
+        clientTop border的宽度
+        offsetWidth content + padding + border
+        offsetLeft border 到 position父元素的距离，没有就是body
+        */
+      console.log(contetn.scrollWidth, contetn.scrollLeft);
+    </script>
+
+    <script>
+      (function (element, direction = 0) {
+        // element 需要滑动的box ,direction = 0 滑动的方向 1 和鼠标同向 0 合触摸板同向
+        // 在vue mounted 中使用
+        let startX = 0;
+        let startY = 0;
+        let start = false;
+        let startLeft = 0;
+        let startTop = 0;
+        // el-table__body-wrapper
+        // const boxel =
+        //   element ||
+        //   document.getElementsByClassName("el-table__body-wrapper")[0];
+        const boxel = document.getElementById("box");
+        // 按下
+        boxel.addEventListener("mousedown", (event) => {
+          const ev = event || window.event;
+          // 获取鼠标位置
+          startX = ev.x;
+          startY = ev.y;
+          console.log("按下");
+          start = true;
+          startLeft = boxel.scrollLeft;
+          startTop = boxel.scrollTop;
+        });
+
+        // 节流
+        function throttle(fn, delay = 64) {
+          let flag = null;
+          return function () {
+            if (!flag) {
+              flag = setTimeout(() => {
+                fn.apply(this, arguments);
+                flag = null;
+              }, delay);
+            }
+          };
+        }
+
+        // 移动
+        boxel.addEventListener(
+          "mousemove",
+          throttle((event) => {
+            if (!start) return;
+            const ev = event || window.event;
+            // 获取鼠标位置
+            const nowX = ev.x;
+            const nowY = ev.y;
+
+            const diffX = nowX - startX;
+            const diffY = nowY - startY;
+
+            // 移动位置
+            const relativeX = (boxel.scrollWidth * diffX) / boxel.clientWidth;
+            const relativeY = (boxel.scrollHeight * diffY) / boxel.clientHeight;
+
+            //鼠标正向、反向
+            boxel.scrollLeft =
+              direction === 1 ? startLeft + relativeX : startLeft - relativeX;
+            boxel.scrollTop =
+              direction === 1 ? startTop + relativeY : startTop - relativeY;
+
+            console.log("移动", startTop, relativeY, startTop - relativeY);
+          }, 64)
+        );
+
+        // 松开
+        boxel.addEventListener("mouseup", () => {
+          console.log("松开");
+          start = false;
+        });
+      })(document.getElementById("box"));
+    </script>
+  </body>
+</html>
