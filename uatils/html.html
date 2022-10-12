@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Special effects</title>
+  </head>
+  <body>
+    <style>
+      body {
+        background-color: bisque;
+      }
+      .emptyword {
+        /* -webkit-text-stroke: 2px #fff; */
+        /* color: transparent; */
+        /* opacity: 0.5; */
+        /* background: repeating-conic-gradient(#fff, #000, #fff 0.1deg); */
+        /* -webkit-background-clip: text; */
+        /* background-clip: text; */
+        /* color: transparent;
+        text-align: center;
+        background: repeating-conic-gradient(
+          #000,
+          rgba(82, 211, 17, 0.133),
+          #000 0.01deg
+        );
+        transition: background 1s; */
+        /* width: 100%;
+        height: 500px;
+        background-image: repeating-radial-gradient(
+          circle at 17% 32%,
+          rgb(4, 4, 0),
+          rgb(52, 72, 197),
+          rgb(115, 252, 224),
+          rgb(116, 71, 5),
+          rgb(223, 46, 169),
+          rgb(0, 160, 56),
+          rgb(234, 255, 0) 0.0007px
+        );
+        animation: yidong 1s linear infinite; */
+      }
+      @keyframes yidong {
+        to {
+          transform: scale(1px, 1px);
+        }
+      }
+
+      .emptyword:hover {
+        /* background: repeating-conic-gradient(#fff, #000, #fff 30deg); */
+      }
+      /*
+              animation:动画名称 动画时长 速度曲线 延迟时间 重复次数 动画方向 执行完毕时的状态
+              //liner为匀速
+              animation:change 1s linear
+              //step(3) 为分布动画
+              animation:change 1s step(3)
+              // 5s为延迟时间 infinite无限 alternate反方向
+              animation: change 1s steps(3) 5s infinite alternate;
+              //执行完毕时的状态(最开始backwards,最终forwards) 不能设置重复次数 与 动画方向
+              animation:change 1s forwards
+          */
+      .arrow {
+        width: 60%;
+        background-color: chocolate;
+        height: 4px;
+        margin: 20px;
+        /* animation: change 3s 2 linear forwards alternate; */
+        /* , lower 3s ease-in-out infinite */
+        animation: change 3s ease-in-out infinite;
+        position: relative;
+      }
+      .arrow::after {
+        content: "";
+        background-color: chocolate;
+        width: 16px;
+        height: 4px;
+        transform-origin: 100% 100%;
+        transform: rotate(45deg);
+        position: absolute;
+        right: 0;
+        /* box-shadow: 5px 0px, 10px 10px, 10px 20px; */
+      }
+      .arrow::before {
+        content: "";
+        background-color: chocolate;
+        width: 16px;
+        height: 4px;
+        transform-origin: 100% 0;
+        transform: rotate(-45deg);
+        position: absolute;
+        right: 0;
+      }
+      .inner {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #6a5acdeb;
+        transform-origin: 50% 50px; /**50px为环绕半径*/
+        animation: an-circle 3s ease-in-out infinite;
+      }
+      @keyframes an-circle {
+        to {
+          transform: scale(1.1, 1.1);
+          transform: rotate(1turn);
+        }
+      }
+      @keyframes change {
+        0% {
+          width: 60%;
+        }
+        50% {
+          width: 90%;
+        }
+        100% {
+          width: 60%;
+        }
+      }
+      @keyframes lower {
+        50% {
+          transform: translateY(50px);
+        }
+      }
+      @keyframes yundong {
+        form {
+          transform: translateX(600px) rotatey(360deg);
+        }
+        to {
+          transform: translateX(600px) rotatey(360deg);
+        }
+      }
+    </style>
+    <div class="emptyword">我是空心字</div>
+    <div class="inner"></div>
+    <div class="arrow"></div>
+  </body>
+</html>
